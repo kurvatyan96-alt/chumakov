@@ -1,0 +1,27 @@
+import math
+E = 3e6
+epsilon_0 = 8.85e-12
+epsilon = 1
+r1 = float(input("Введите диаметр первого шара: ")) / 2
+r2 = float(input("Введите диаметр второго шара: ")) / 2
+r3 = float(input("Введите диаметр третьего шара: ")) / 2
+qmax1 = E / (4 * math.pi * epsilon_0 * epsilon * r1**2)
+qmax2 = E / (4 * math.pi * epsilon_0 * epsilon * r2**2)
+qmax3 = E / (4 * math.pi * epsilon_0 * epsilon * r3**2)
+phi_min1 = E * r1
+phi_min2 = E * r2
+phi_min3 = E * r3
+print("Результат расчета:")
+if qmax1 > qmax2 and qmax1 > qmax3:
+    print("максимальный заряд у шара 1:")
+elif qmax2 > qmax3:
+    print("максимальный предельный заряд у шара 2:")
+else:
+    print("Максимальный предельный заряд у шара 3:")
+if phi_min1 < phi_min2 and phi_min1 < phi_min3:
+    print("Минимальный заряд 1шара:")
+elif phi_min2 < phi_min3:
+    print("МИНИМАЛЬНЫЙ ЗАРЯД 2 шара:")
+else:
+    print("Минимальный заряд 3 шара:")
+print("Все значения:")
