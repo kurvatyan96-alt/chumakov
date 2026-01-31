@@ -1,0 +1,10 @@
+21var na 5
+from math import sqrt
+a = float(input("введите число"))
+h = float(input("введите число"))
+b = float(input("введите число"))
+s1 = a**2
+s2 = b**2
+v = h*(s1 + sqrt(s1*s2) + s2) / 3
+print("v=","{:7.2f}".format(v))
+
