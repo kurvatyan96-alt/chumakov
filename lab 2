@@ -25,3 +25,7 @@ elif phi_min2 < phi_min3:
 else:
     print("Минимальный заряд 3 шара:")
 print("Все значения:")
+print(f"\nВсе значения:")
+print(f"Шар 1 (r={r1} м): qmax={qmax1:.2e} Кл, φmin={phi_min1:.2f} В")
+print(f"Шар 2 (r={r2} м): qmax={qmax2:.2e} Кл, φmin={phi_min2:.2f} В")
+print(f"Шар 3 (r={r3} м): qmax={qmax3:.2e} Кл, φmin={phi_min3:.2f} В")
