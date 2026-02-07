@@ -1,3 +1,4 @@
+#Вариант 24
 import math
 E = 3e6
 epsilon_0 = 8.85e-12
