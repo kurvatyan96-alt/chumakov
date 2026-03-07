@@ -1,0 +1,11 @@
+	Напишите метод, который принимает в качестве параметра целое число и возвращает самую большую цифру в этом числе.
+def max_digit(n):
+    b=0
+    while n>0:
+        max_digit=n%10
+        if max_digit>b:
+            b=max_digit
+        n=n//10
+    return b
+num=int(input("Enter a number: "))
+print(max_digit(num))
