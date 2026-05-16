@@ -1,0 +1,53 @@
+import pexpect
+import re
+from pprint import pprint
+
+def send_show_command(ip, password,enable,commands,prompt='#'):
+    with pexpect.spawn(f"telnet {ip}",timeout=10,encoding='utf-8') as child:
+        #авторизация
+        child.expect("[Pp]assword")
+        child.sendline(password)
+        enable_status=child.expect([">","#"])
+        if enable_status==0:
+            child.sendline("enable")
+            child.expect("[Pp]assword")
+            child.sendline(enable)
+            child.expect(prompt)
+        child.sendline("terminal length 0")
+        child.expect(prompt)
+        #настройка ip address
+        if ip=="'192.168.179.130'":
+            child.sendline("conf t")
+            child.sendline("int fa0/0.10")
+            child.sendline("encapsulation dot1Q 10")
+            child.sendline("ip address 192.168.99.1 255.255.255.0")
+            child.sendline("exit")
+        elif ip=="'192.168.179.131'":
+            child.sendline("conf t")
+            child.sendline("int fa0/0.20")
+            child.sendline("encapsulation dot1Q 20")
+            child.sendline("ip address 192.31.0.1 255.255.255.0")
+            child.sendline("exit")
+        #отчеты
+        result={}
+        for command in commands:
+            child.sendline(command)
+            match=child.expect([prompt,pexpect.TIMEOUT,pexpect.EOF])
+            if match==1:
+                print(f"Символ {prompt} не найден в выводе. Полученный вывод записан в словарь")
+            if match==2:
+                print("Соединение разорвано со стороны сервера")
+                return result
+            else:
+                output=child.before
+                result[command] = output.replace("\r\n", "\n")
+        return result
+
+if __name__=="__main__":
+    devices=['192.168.179.130','192.168.179.131']
+    commands=["sh run","sh ip route"]
+    for ip in devices:
+        result=send_show_command(ip,"cisco","cisco",commands)
+        pprint(result,width=120)
+        with open("report.txt","w") as file:
+            file.write(result.get("sh ip route"))
