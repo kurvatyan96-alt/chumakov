@@ -1,0 +1,16 @@
+#11вар
+#1 задание
+# heights = (152, 155, 158, 160, 162, 165, 168, 170, 172, 175, 178, 180, 182)
+# target_height = 170
+# if target_height in heights:
+#     print(f"В классе есть ученик ростом {target_height} см.")
+# else:
+#     print(f"В классе нет ученика ростом {target_height} см.")
+
+#2 Задание
+# numbers = [15, 25, 35, 45, 55, 65]
+# k = 2
+# for i in range(k, len(numbers) - 1):
+#     numbers[i] = numbers[i + 1]
+# numbers.pop()
+# print(f"Список после удаления и сдвига: {numbers}")
